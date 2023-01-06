@@ -3,3 +3,5 @@
 <link rel="stylesheet" type="text/css" href="{{asset('back/assets/css/main.rtl.css')}}">
 <!-- Font-icon css-->
 <link rel="stylesheet" type="text/css" href="{{asset('back/assets/css/font-awesome.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('back/assets/css/custom.css')}}">
+@livewireStyles

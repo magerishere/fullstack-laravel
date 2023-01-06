@@ -33,5 +33,7 @@
     </main>
     <!-- Scripts -->
     @include('back.layouts.partials.scripts')
+    <!-- Loading that need to livewire scripts -->
+    <x-back.loading/>
 </body>
 </html>
