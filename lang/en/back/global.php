@@ -8,5 +8,6 @@ return [
     'password_confirmation' => 'Password Confirmation',
     'email' => 'Email',
     'mobile' => 'Mobile',
-    'phone' => 'Phone'
+    'phone' => 'Phone',
+    'image' => 'Image',
 ];

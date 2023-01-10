@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire\Back;
 
+use App\Enums\UserRoleEnums;
 use App\Models\User;
 use App\Services\User\UserServices;
 use App\Traits\HasForm;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class UserCreateForm extends Component
 {
+    use WithFileUploads;
     use HasForm;
 
     public array $formInputs = [
@@ -19,6 +22,7 @@ class UserCreateForm extends Component
         'email',
         'password',
         'password_confirmation',
+        'image'
     ];
 
 
@@ -29,6 +33,7 @@ class UserCreateForm extends Component
     public string $username;
     public string $password;
     public string $password_confirmation;
+    public $image;
 
     protected $rules = [
         'phone' => ['required', 'digits:11', 'unique:users,phone'],
@@ -37,8 +42,8 @@ class UserCreateForm extends Component
         'name' => ['required', 'min:3'],
         'email' => ['required', 'email', 'unique:users,email'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
+        'image' => ['required', 'image', 'max:1024'],
     ];
-
 
 
     public function createUser()
@@ -50,6 +55,10 @@ class UserCreateForm extends Component
         $userServices = new UserServices();
 
         $user = $userServices->createUser($validatedData);
+
+        $userServices->assignRole($user, UserRoleEnums::MEMBER);
+
+        $this->image->store('photos');
 
         $this->emitSelf('createUser', ['notification_message' => __('back/form.success_created', ['title' => $user->name])]);
 

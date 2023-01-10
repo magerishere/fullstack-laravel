@@ -8,5 +8,6 @@ return [
     'password_confirmation' => 'تکرار رمزعبور',
     'email' => 'ایمیل',
     'mobile' => 'موبایل',
-    'phone' => 'تلفن'
+    'phone' => 'تلفن',
+    'image' => 'عکس',
 ];

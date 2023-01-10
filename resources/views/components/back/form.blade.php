@@ -1,8 +1,5 @@
 <form wire:submit.prevent="{{$submit}}">
     @csrf
-    @if($success_session = session()->get('success_session'))
-        <p>Yes Successful</p>
-    @endif
     <div class="row">
         {{$slot}}
     </div>

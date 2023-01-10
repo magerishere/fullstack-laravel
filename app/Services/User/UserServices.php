@@ -2,19 +2,24 @@
 
 namespace App\Services\User;
 
+use App\Enums\UserRoleEnums;
 use App\Models\User;
 
 class UserServices
 {
-    private User $model;
-
-    public function __construct()
-    {
-        $this->model = new User();
-    }
 
     public function createUser(array $data)
     {
-        return $this->model::create($data);
+        return User::create($data);
+    }
+
+    public function assignRole(User $user, mixed $role)
+    {
+        if (!UserRoleEnums::hasValue($role)) {
+            throw new \Error("This roles does not belongs to UserRoleEnums: $role");
+        }
+        $user->assignRole($role);
+
+        return $this;
     }
 }

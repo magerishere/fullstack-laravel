@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Str;
+
 trait HasForm
 {
     public bool $formOnceSubmit = false;
@@ -9,6 +11,9 @@ trait HasForm
     public function updated($propertyName)
     {
         if ($this->formOnceSubmit) {
+            if (Str::contains($propertyName, '_confirmation')) {
+                $propertyName = Str::replace('_confirmation', '', $propertyName);
+            }
             $this->validateOnly($propertyName);
         }
     }
