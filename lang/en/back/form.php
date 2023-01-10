@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'submit' => 'Submit'
+    'submit' => 'Submit',
+    'success_created' => ':title Successfully created.'
+
 ];

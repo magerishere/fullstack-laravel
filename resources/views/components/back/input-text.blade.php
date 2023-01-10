@@ -5,7 +5,7 @@
             "form-control",
             'is-valid' => ($errors->any() && !$errors->has($name)),
             'is-invalid' => $errors->has($name),
-            ]) type="text" id="{{$id}}" name="{{$name}}" value="{{$value}}" {{$attributes}} />
+            ]) type="text" id="{{$id}}" name="{{$name}}" wire:model="{{$name}}" {{$attributes}} />
         @error($name)
         <small class="form-text text-muted" id="emailHelp">{{$message}}</small>
         @enderror

@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'submit' => 'ثبت'
+    'submit' => 'ثبت',
+    'success_created' => ':title با موفقیت ایجاد شد.'
 ];

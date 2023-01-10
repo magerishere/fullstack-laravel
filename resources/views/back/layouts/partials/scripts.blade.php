@@ -7,6 +7,10 @@
 <script src="{{asset('back/assets/js/plugins/pace.min.js')}}"></script>
 <!-- Page specific javascripts-->
 <script type="text/javascript" src="{{asset('back/assets/js/plugins/chart.js')}}"></script>
+<!-- Helper & Custom Js-->
+<script type="text/javascript" src="{{asset('back/assets/js/helpers.js')}}"></script>
 <script type="text/javascript" src="{{asset('back/assets/js/custom.js')}}"></script>
-
+<script type="text/javascript" src="{{asset('back/assets/js/plugins/bootstrap-notify.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('back/assets/js/plugins/sweetalert.min.js')}}"></script>
 @livewireScripts
+@stack('scripts')

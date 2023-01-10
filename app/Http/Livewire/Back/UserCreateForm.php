@@ -3,10 +3,25 @@
 namespace App\Http\Livewire\Back;
 
 use App\Models\User;
+use App\Services\User\UserServices;
+use App\Traits\HasForm;
 use Livewire\Component;
 
 class UserCreateForm extends Component
 {
+    use HasForm;
+
+    public array $formInputs = [
+        'mobile',
+        'phone',
+        'name',
+        'username',
+        'email',
+        'password',
+        'password_confirmation',
+    ];
+
+
     public string $mobile;
     public string $phone;
     public string $name;
@@ -14,7 +29,6 @@ class UserCreateForm extends Component
     public string $username;
     public string $password;
     public string $password_confirmation;
-    public bool $formOnceSubmit = false;
 
     protected $rules = [
         'phone' => ['required', 'digits:11', 'unique:users,phone'],
@@ -25,21 +39,21 @@ class UserCreateForm extends Component
         'password' => ['required', 'string', 'min:8', 'confirmed'],
     ];
 
-    public function updated($propertyName)
-    {
-        if ($this->formOnceSubmit) {
-            $this->validateOnly($propertyName);
-        }
-    }
+
 
     public function createUser()
     {
         $this->formOnceSubmit = true;
+
         $validatedData = $this->validate();
 
-        User::create($validatedData);
+        $userServices = new UserServices();
 
-        session()->flash('success_session', 'Successful Submitted');
+        $user = $userServices->createUser($validatedData);
+
+        $this->emitSelf('createUser', ['notification_message' => __('back/form.success_created', ['title' => $user->name])]);
+
+        $this->resetForm();
     }
 
     public function render()
