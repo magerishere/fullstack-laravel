@@ -12,5 +12,9 @@
 <script type="text/javascript" src="{{asset('back/assets/js/custom.js')}}"></script>
 <script type="text/javascript" src="{{asset('back/assets/js/plugins/bootstrap-notify.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('back/assets/js/plugins/sweetalert.min.js')}}"></script>
+<!-- Data table plugin-->
+<script type="text/javascript" src="{{asset('back/assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('back/assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript">$('[data-table]').DataTable();</script>
 @livewireScripts
 @stack('scripts')

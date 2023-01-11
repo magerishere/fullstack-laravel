@@ -7,8 +7,12 @@ use App\Models\User;
 
 class UserServices
 {
+    public function all(string $orderBy = 'created_at')
+    {
+        return User::orderByDesc($orderBy)->get();
+    }
 
-    public function createUser(array $data)
+    public function createUser(array $data): User
     {
         return User::create($data);
     }

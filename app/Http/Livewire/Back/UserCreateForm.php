@@ -58,7 +58,7 @@ class UserCreateForm extends Component
 
         $userServices->assignRole($user, UserRoleEnums::MEMBER);
 
-        $this->image->store('photos');
+        $user->addMedia($this->image)->toMediaCollection('default', 'users');
 
         $this->emitSelf('createUser', ['notification_message' => __('back/form.success_created', ['title' => $user->name])]);
 
