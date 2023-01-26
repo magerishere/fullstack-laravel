@@ -10,4 +10,6 @@ return [
     'mobile' => 'Mobile',
     'phone' => 'Phone',
     'image' => 'Image',
+    'edit' => 'Edit',
+    'operation' => 'Operation'
 ];

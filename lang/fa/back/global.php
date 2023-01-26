@@ -10,4 +10,6 @@ return [
     'mobile' => 'موبایل',
     'phone' => 'تلفن',
     'image' => 'عکس',
+    'edit' => 'ویرایش',
+    'operation' => 'عملیات'
 ];

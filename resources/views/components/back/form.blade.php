@@ -3,7 +3,11 @@
     <div class="row">
         {{$slot}}
     </div>
-
+    <div class="col-12">
+        <div class="tile-footer">
+            {{$footer}}
+        </div>
+    </div>
 
 </form>
 

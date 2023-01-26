@@ -100,3 +100,17 @@ if (!function_exists('getMemberPermissions')) {
         ];
     }
 }
+
+if (!function_exists('getFilePreviewUrl')) {
+    function getFilePreviewUrl(\Spatie\MediaLibrary\MediaCollections\Models\Media|\Livewire\TemporaryUploadedFile|string $file)
+    {
+        if ($file instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
+            return $file->getUrl();
+        }
+        if ($file instanceof \Livewire\TemporaryUploadedFile) {
+            return $file->temporaryUrl();
+        }
+
+        return $file;
+    }
+}

@@ -1,7 +1,8 @@
-<x-back.form submit="createUser">
+<x-back.form submit="updateUser">
     <x-back.input-text id="name" name="name" label="{{__('back/global.full_name')}}"/>
     <x-back.input-text id="username" name="username" label="{{__('back/global.username')}}"/>
-    <x-back.input-file id="image" name="image" label="{{__('back/global.image')}}" :file="$image"/>
+    <x-back.input-file id="image" name="image" label="{{__('back/global.image')}}" :file="$image"
+                       :file-preview-url="$imageUrl"/>
     <x-back.input-text id="email" name="email" label="{{__('back/global.email')}}"/>
     <x-back.input-text id="phone" name="phone" label="{{__('back/global.phone')}}"/>
     <x-back.input-text id="mobile" name="mobile" label="{{__('back/global.mobile')}}"/>
@@ -17,3 +18,4 @@
     </x-slot:footer>
 
 </x-back.form>
+

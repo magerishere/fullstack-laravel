@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Back;
 
+use App\Enums\FormInputEnums;
 use App\Enums\UserRoleEnums;
 use App\Models\User;
-use App\Services\User\UserServices;
+use App\Services\User\UserService;
 use App\Traits\HasForm;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -14,15 +15,19 @@ class UserCreateForm extends Component
     use WithFileUploads;
     use HasForm;
 
-    public array $formInputs = [
+    protected array $formInputs = [
         'mobile',
         'phone',
         'name',
         'username',
         'email',
         'password',
-        'password_confirmation',
-        'image'
+        'password_confirmation' => [
+            FormInputEnums::HAS_CONFIRMATION => true,
+        ],
+        'image' => [
+            FormInputEnums::HAS_FILE => true,
+        ]
     ];
 
 
@@ -34,17 +39,20 @@ class UserCreateForm extends Component
     public string $password;
     public string $password_confirmation;
     public $image;
+    public string $imageUrl;
 
-    protected $rules = [
-        'phone' => ['required', 'digits:11', 'unique:users,phone'],
-        'mobile' => ['required', 'digits:11', 'unique:users,mobile'],
-        'username' => ['required', 'string', 'unique:users,username'],
-        'name' => ['required', 'min:3'],
-        'email' => ['required', 'email', 'unique:users,email'],
-        'password' => ['required', 'string', 'min:8', 'confirmed'],
-        'image' => ['required', 'image', 'max:1024'],
-    ];
-
+    protected function rules()
+    {
+        return [
+            'phone' => ['required', 'digits:11', 'unique:users,phone'],
+            'mobile' => ['required', 'digits:11', 'unique:users,mobile'],
+            'username' => ['required', 'string', 'unique:users,username'],
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'image' => ['nullable', 'image', 'max:1024'],
+        ];
+    }
 
     public function createUser()
     {
@@ -52,7 +60,7 @@ class UserCreateForm extends Component
 
         $validatedData = $this->validate();
 
-        $userServices = new UserServices();
+        $userServices = new UserService();
 
         $user = $userServices->createUser($validatedData);
 
@@ -60,7 +68,7 @@ class UserCreateForm extends Component
 
         $user->addMedia($this->image)->toMediaCollection('default', 'users');
 
-        $this->emitSelf('createUser', ['notification_message' => __('back/form.success_created', ['title' => $user->name])]);
+        $this->emitSelf('createUser', ['notification_message' => __('back/form.success_updated', ['title' => $user->name])]);
 
         $this->resetForm();
     }

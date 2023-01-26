@@ -6,7 +6,9 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Name</th>
+                <th>{{__('back/global.full_name')}}</th>
+                <th>{{__('back/global.email')}}</th>
+                <th>{{__('back/global.operation')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -14,6 +16,12 @@
                 <tr>
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>
+                        <x-back.link href="{{route('admin.users.edit',$user->id)}}">
+                            <i class="fa fa-edit"></i>
+                        </x-back.link>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

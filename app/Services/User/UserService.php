@@ -5,7 +5,7 @@ namespace App\Services\User;
 use App\Enums\UserRoleEnums;
 use App\Models\User;
 
-class UserServices
+class UserService
 {
     public function all(string $orderBy = 'created_at')
     {
@@ -15,6 +15,12 @@ class UserServices
     public function createUser(array $data): User
     {
         return User::create($data);
+    }
+
+    public function updateUser(User $user, array $data): User
+    {
+        $user->update($data);
+        return $user;
     }
 
     public function assignRole(User $user, mixed $role)

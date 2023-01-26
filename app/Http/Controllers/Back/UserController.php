@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Services\User\UserServices;
+use App\Services\User\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    protected UserServices $userServices;
+    protected UserService $userServices;
 
-    public function __construct(UserServices $userServices)
+    public function __construct(UserService $userServices)
     {
         $this->userServices = $userServices;
     }
@@ -67,7 +67,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('back.users.edit', compact('user'));
     }
 
     /**
