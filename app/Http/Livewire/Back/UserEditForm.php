@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Back;
 
 use App\Models\User;
+use App\Services\Media\MediaService;
 use App\Services\User\UserService;
 use App\Traits\HasForm;
 use Livewire\Component;
@@ -57,7 +58,7 @@ class UserEditForm extends Component
         $this->username = $user->username;
         $this->phone = $user->phone;
         $this->mobile = $user->mobile;
-        $this->imageUrl = getFilePreviewUrl($user->getFirstMediaUrl());
+        $this->imageUrl = $user->getFirstMediaUrl();
     }
 
     public function updateUser()
@@ -70,7 +71,11 @@ class UserEditForm extends Component
 
         $user = $userServices->updateUser($this->user, $validatedData);
 
-        $user->addMedia($this->image)->toMediaCollection('default', 'users');
+        if ($this->image) {
+            $mediaService = new MediaService();
+
+            $mediaService->createUserMedia($user, $this->image);
+        }
 
         $this->emitSelf('createUser', ['notification_message' => __('back/form.success_created', ['title' => $user->name])]);
     }

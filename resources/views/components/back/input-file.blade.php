@@ -15,14 +15,9 @@
         </div>
         <div class="col-3">
 
-            @if ($file)
+            @if ($filePreviewUrl)
                 <div class="preview-image-wrapper">
-                    @if($file instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media)
-                        <img src="{{ $file->getUrl() }}">
-                    @endif
-                    @if($file instanceof \Livewire\TemporaryUploadedFile)
-                        <img src="{{ $file->temporaryUrl() }}">
-                    @endif
+                    <img src="{{ $filePreviewUrl }}">
                 </div>
             @endif
         </div>

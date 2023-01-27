@@ -49,7 +49,6 @@ return [
             'root' => public_path(env('APP_URL_UPLOAD') . '/photos/users'),
             'url' => env('APP_URL') . env('APP_URL_UPLOAD') . '/photos/users',
             'visibility' => 'public',
-            'throw' => false,
         ],
 
         's3' => [

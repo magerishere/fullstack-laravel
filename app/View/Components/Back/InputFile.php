@@ -11,7 +11,7 @@ class InputFile extends Component
      *
      * @return void
      */
-    public function __construct(public string $label, public string $id, public string $name, public string $value = '', public int $sizeSm = 12, public int $sizeMd = 6, public int $sizeLg = 4, public $file = null)
+    public function __construct(public string $label, public string $id, public string $name, public string $value = '', public int $sizeSm = 12, public int $sizeMd = 6, public int $sizeLg = 4, public $file = null, public ?string $filePreviewUrl = null)
     {
         //
     }
